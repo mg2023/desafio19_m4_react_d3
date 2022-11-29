@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import { BaseColaboradores } from "./BaseColaboradores"
+
+const list = BaseColaboradores.map((colaborador) => <li key={colaborador} > {colaborador.id} {colaborador.nombre} {colaborador.correo}</li>)
+
+// const lista = listaOrdenada.map(color => <li key={color}> {color} </li>)
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ul>
+        {list}
+      </ul>
     </div>
   );
 }
