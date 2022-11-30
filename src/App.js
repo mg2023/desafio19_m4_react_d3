@@ -7,6 +7,7 @@ function App() {
   const [colaboradorCorreo, setColaboradorCorreo] = useState("")
   const [colaboradorId, setColaboradorId] = useState("4")
   const [listaColaboradores, setListaColaboradores] = useState(BaseColaboradores)
+  const [busquedaPorNombre, setBusquedaPorNombre] = useState("")
   const list = listaColaboradores.map((colaborador) => <li key={colaborador.id} > {colaborador.id} {colaborador.nombre} {colaborador.correo}</li>)
 
   //Función al enviar el formulario
@@ -41,6 +42,18 @@ function App() {
     setColaboradorCorreo(e.target.value)
   }
 
+  const enviarBusqueda = (e) => {
+    e.preventDefault()
+    console.log(`Iniciar busqueda por nombre ${busquedaPorNombre}`)
+  }
+
+  const capturaBusqueda = (e) => {
+    console.log("Captura busqueda")
+    setBusquedaPorNombre(e.target.value)
+  }
+
+
+
   return (
     <div>
       <form onSubmit={enviarFormulario}>
@@ -58,6 +71,16 @@ function App() {
           value={colaboradorCorreo}
         ></input>
         <button>Agregar Colaborador</button>
+      </form>
+      <form onSubmit={enviarBusqueda}>
+        <input
+          placeholder="Búsqueda por nombre"
+          name="busqueda-por-nombre"
+          type="search"
+          onChange={capturaBusqueda}
+          value={busquedaPorNombre}
+        ></input>
+        <button>Buscar colaborador</button>
       </form>
       <ul>
         {list}
