@@ -4,7 +4,7 @@ import { useState } from "react"
 function App() {
 
   // const [resultadoBusqueda, setResultadoBusqueda] = useState(BaseColaboradores)
-  const [resultadoBusqueda, setResultadoBusqueda] = useState({id:"", nombre: "", correo:""})
+  const [resultadoBusqueda, setResultadoBusqueda] = useState({id: "", nombre: "",correo: ""})
   const [colaboradorNombre, setColaboradorNombre] = useState("")
   const [colaboradorCorreo, setColaboradorCorreo] = useState("")
   const [colaboradorId, setColaboradorId] = useState("4")
@@ -13,6 +13,8 @@ function App() {
   const list = listaColaboradores.map((colaborador) => <li key={colaborador.id} > {colaborador.id} {colaborador.nombre} {colaborador.correo}</li>)
  
 
+
+///////////////////////AGREGA COLABORADORES/////////////////////////////////
   //Función al enviar el formulario
   const enviarFormulario = (e) => {
     console.log("Enviar form")
@@ -25,7 +27,7 @@ function App() {
       id: colaboradorId,
       nombre: colaboradorNombre,
       correo: colaboradorCorreo
-    },])
+    }])
     
     // Vaciamos el formulario
     setColaboradorNombre("") 
@@ -44,52 +46,42 @@ function App() {
     console.log(e.target.value)
     setColaboradorCorreo(e.target.value)
   }
+///////////////////////FIN AGREGA COLABORADORES/////////////////////////////////
 
+
+
+///////////////////////BUSCAR COLABORADORES POR NOMBRE/////////////////////////////////
   const enviarBusqueda = (e) => {
     e.preventDefault()
-    console.log(`Iniciar busqueda por nombre ${busquedaPorNombre}`)
+    console.log(`Iniciar busqueda por nombre: ${busquedaPorNombre}`)
 
     const result = listaColaboradores.filter(user => user.nombre === busquedaPorNombre)
-    console.log(`result id : ${result.id}`)
-    console.log(result)
-    // setResultadoBusqueda({
-    //   id: "hola",
-    //   nombre: result.nombre,
-    //   correo: result.correo
-    // }
-    // )
-    console.log(resultadoBusqueda.id)
-    console.log(resultadoBusqueda.correo)
-    console.log(resultadoBusqueda.nombre)
-
-    // resultRender = <div> Id:{result.id} Nombre:{result.nombre} correo:{result.correo}</div>
- 
-    // console.log(`result = ${result.value}`)
-    
-
-
-    // for (let elem in listaColaboradores){
-    //     if (listaColaboradores[elem].nombre === busquedaPorNombre){
-    //       console.log("Nombre encontrado!!")
-    //     }
-
-
-    // }
+    if (result.length > 0){
+      setResultadoBusqueda(
+        {
+          id: result[0].id,
+          nombre: result[0].nombre,
+          correo: result[0].correo
+        }  
+      )
+    }
+    else {
+      console.log("No encontrado")
+    }
 
     setBusquedaPorNombre("")
 
   }
 
   const capturaBusqueda = (e) => {
-    console.log("Captura busqueda")
     setBusquedaPorNombre(e.target.value)
-    console.log(e.target.value)
+    console.log(`setBusquedaPorNombre: ${e.target.value}`)
   }
 
 
 
   return (
-    <div>
+    <main className="container">
       <form onSubmit={enviarFormulario}>
         <input
           placeholder="Nombre"
@@ -121,7 +113,7 @@ function App() {
       <ul>
         {list}
       </ul>
-    </div>
+    </main>
   );
 }
 
