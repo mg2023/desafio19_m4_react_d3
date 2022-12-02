@@ -3,12 +3,15 @@ import { useState } from "react"
 
 function App() {
 
+  // const [resultadoBusqueda, setResultadoBusqueda] = useState(BaseColaboradores)
+  const [resultadoBusqueda, setResultadoBusqueda] = useState({id:"", nombre: "", correo:""})
   const [colaboradorNombre, setColaboradorNombre] = useState("")
   const [colaboradorCorreo, setColaboradorCorreo] = useState("")
   const [colaboradorId, setColaboradorId] = useState("4")
   const [listaColaboradores, setListaColaboradores] = useState(BaseColaboradores)
   const [busquedaPorNombre, setBusquedaPorNombre] = useState("")
   const list = listaColaboradores.map((colaborador) => <li key={colaborador.id} > {colaborador.id} {colaborador.nombre} {colaborador.correo}</li>)
+ 
 
   //Función al enviar el formulario
   const enviarFormulario = (e) => {
@@ -45,11 +48,42 @@ function App() {
   const enviarBusqueda = (e) => {
     e.preventDefault()
     console.log(`Iniciar busqueda por nombre ${busquedaPorNombre}`)
+
+    const result = listaColaboradores.filter(user => user.nombre === busquedaPorNombre)
+    console.log(`result id : ${result.id}`)
+    console.log(result)
+    // setResultadoBusqueda({
+    //   id: "hola",
+    //   nombre: result.nombre,
+    //   correo: result.correo
+    // }
+    // )
+    console.log(resultadoBusqueda.id)
+    console.log(resultadoBusqueda.correo)
+    console.log(resultadoBusqueda.nombre)
+
+    // resultRender = <div> Id:{result.id} Nombre:{result.nombre} correo:{result.correo}</div>
+ 
+    // console.log(`result = ${result.value}`)
+    
+
+
+    // for (let elem in listaColaboradores){
+    //     if (listaColaboradores[elem].nombre === busquedaPorNombre){
+    //       console.log("Nombre encontrado!!")
+    //     }
+
+
+    // }
+
+    setBusquedaPorNombre("")
+
   }
 
   const capturaBusqueda = (e) => {
     console.log("Captura busqueda")
     setBusquedaPorNombre(e.target.value)
+    console.log(e.target.value)
   }
 
 
@@ -58,13 +92,13 @@ function App() {
     <div>
       <form onSubmit={enviarFormulario}>
         <input
-          placeholder="ingrese nombre del colaborador"
+          placeholder="Nombre"
           name="ingrese-nombre-colaborador"
           onChange={capturaNombre}
           value={colaboradorNombre}
         ></input>
         <input
-          placeholder="ingrese correo del colaborador"
+          placeholder="Correo"
           name="ingrese-correo-colaborador"
           type="email"
           onChange={capturaCorreo}
@@ -74,7 +108,7 @@ function App() {
       </form>
       <form onSubmit={enviarBusqueda}>
         <input
-          placeholder="Búsqueda por nombre"
+          placeholder="Nombre"
           name="busqueda-por-nombre"
           type="search"
           onChange={capturaBusqueda}
@@ -82,6 +116,8 @@ function App() {
         ></input>
         <button>Buscar colaborador</button>
       </form>
+      
+      ID:{resultadoBusqueda.id} , Nombre: {resultadoBusqueda.nombre}, Correo: {resultadoBusqueda.correo }
       <ul>
         {list}
       </ul>
