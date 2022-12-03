@@ -149,9 +149,7 @@ function App() {
             </div>
           </div>
           <div>
-            <p className="fs-3">Listado de colaboradores     </p>
-          </div>
-          <div>
+            <p className="fs-3 pt-3">Listado de colaboradores     </p>
             <ul className="list-group list-group-horizontal">
               <li className="list-group-item col-1">ID</li>
               <li className="list-group-item col-4">Nombre</li>
