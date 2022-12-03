@@ -10,11 +10,11 @@ function App() {
   const [colaboradorId, setColaboradorId] = useState("4")
   const [listaColaboradores, setListaColaboradores] = useState(BaseColaboradores)
   const [busquedaPorNombre, setBusquedaPorNombre] = useState("")
-  const list = listaColaboradores.map((colaborador) => <ul class="list-group list-group-horizontal-lg">
-    <li class="list-group-item" key={colaborador.id} > {colaborador.id} </li>
-    <li class="list-group-item" key={colaborador.id} > {colaborador.nombre} </li>
-    <li class="list-group-item" key={colaborador.id} > {colaborador.correo}</li>
-  </ul>)
+  // const list = listaColaboradores.map((colaborador) => <ul class="list-group list-group-horizontal-lg">
+  //   <li class="list-group-item col-1" key={colaborador.id} > {colaborador.id} </li>
+  //   <li class="list-group-item col" key={colaborador.id} > {colaborador.nombre} </li>
+  //   <li class="list-group-item col" key={colaborador.id} > {colaborador.correo}</li>
+  // </ul>)
 
 
 
@@ -61,11 +61,6 @@ function App() {
 
     const result = listaColaboradores.filter(user => user.nombre === busquedaPorNombre)
     if (result.length > 0) {
-      <ul class="list-group list-group-horizontal">
-      <li class="list-group-item">An item</li>
-      <li class="list-group-item">A second item</li>
-      <li class="list-group-item">A third item</li>
-    </ul>
       setResultadoBusqueda(
         {
           id: result[0].id,
@@ -94,57 +89,95 @@ function App() {
     console.log(`setBusquedaPorNombre: ${e.target.value}`)
   }
 
-
+  ///////////////////////FIN BUSCAR COLABORADORES POR NOMBRE/////////////////////////////////
 
   return (
     <main className="container">
-      <form onSubmit={enviarFormulario}>
-        <div class="mb-3">
-          <label for="exampleInputName" class="form-label">Nombre del colaborador</label>
-          <input type="text" class="form-control" id="exampleInputName"
-            placeholder="Ingresa el nombre del colaborador"
-            name="ingrese-nombre-colaborador"
-            onChange={capturaNombre}
-            value={colaboradorNombre}
-          ></input>
+      <div class="row">
+        <div class="col">
         </div>
-        <div className="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Correo del colaborador</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-            placeholder="Ingresa el correo del colaborador"
-            name="ingrese-correo-colaborador"
-            onChange={capturaCorreo}
-            value={colaboradorCorreo}
-          ></input>
+        <div class="col-6 p-3 mb-2 bg-info text-dark">
+          <header>
+            <p class="fs-1">Registro colaboradores</p>
+          </header>
+          <form onSubmit={enviarFormulario}>
+            <div class="mb-3">
+              <label for="exampleInputName" class="form-label">Nombre del colaborador</label>
+              <input type="text" class="form-control" id="exampleInputName"
+                placeholder="Ingresa el nombre del colaborador"
+                name="ingrese-nombre-colaborador"
+                onChange={capturaNombre}
+                value={colaboradorNombre}
+              ></input>
+            </div>
+            <div className="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Correo del colaborador</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="Ingresa el correo del colaborador"
+                name="ingrese-correo-colaborador"
+                onChange={capturaCorreo}
+                value={colaboradorCorreo}
+              ></input>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar colaborador</button>
+          </form>
+          <div>
+            <form onSubmit={enviarBusqueda}>
+              <div class="input-group mb-3 mt-3">
+                {/* <label for="exampleInputName" class="form-label"></label> */}
+                <input type="search" class="form-control" id="exampleInputName"
+                  placeholder="Busca un colaborador"
+                  name="busqueda-por-nombre"
+                  onChange={capturaBusqueda}
+                  value={busquedaPorNombre}
+                ></input>
+                <button type="submit" class="btn btn-primary">Buscar colaborador</button>
+              </div>
+            </form>
+            <div>
+              <p class="fs-3">Resultado búsqueda</p>
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item col-1">ID</li>
+                <li class="list-group-item col-4">Nombre</li>
+                <li class="list-group-item col">Correo</li>
+              </ul>
+              <ul class="list-group list-group-horizontal-lg">
+                <li class="list-group-item col-1" > {resultadoBusqueda.id} </li>
+                <li class="list-group-item col-4" > {resultadoBusqueda.nombre} </li>
+                <li class="list-group-item col" > {resultadoBusqueda.correo}</li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <p class="fs-3">Listado de colaboradores     </p>
+          </div>
+          <div>
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item col-1">ID</li>
+              <li class="list-group-item col-4">Nombre</li>
+              <li class="list-group-item col">Correo</li>
+            </ul>
+            {listaColaboradores.map((colaborador) =>
+              <ul class="list-group list-group-horizontal-lg">
+                <li class="list-group-item col-1" key={colaborador.id} > {colaborador.id} </li>
+                <li class="list-group-item col-4" key={colaborador.id} > {colaborador.nombre} </li>
+                <li class="list-group-item col" key={colaborador.id} > {colaborador.correo}</li>
+              </ul>)}
+          </div>
+          <footer>
+            <p class="fs-5 text-center pt-3">Desafio colaboradores 2022</p>
+          </footer>
         </div>
-        <button type="submit" class="btn btn-primary">Agregar colaborador</button>
-      </form>
-      <form onSubmit={enviarBusqueda}>
-        <div class="mb-3">
-          <label for="exampleInputName" class="form-label"></label>
-          <input type="search" class="form-control" id="exampleInputName"
-            placeholder="Busca un colaborador"
-            name="busqueda-por-nombre"
-            onChange={capturaBusqueda}
-            value={busquedaPorNombre}
-          ></input>
+
+        <div class="col">
         </div>
-        <button type="submit" class="btn btn-primary">Buscar colaborador</button>
-      </form>
-      <div>
-        ID:{resultadoBusqueda.id} , Nombre: {resultadoBusqueda.nombre}, Correo: {resultadoBusqueda.correo}
       </div>
-      <div>
-        <p class="fs-1">Listado de colaboradores     </p>
-      </div>
-      <div class="px-5 col-sm-12 col-md-8">
-        <ul class="list-group list-group-horizontal-lg">
-          <li class="list-group-item">ID</li>
-          <li class="list-group-item">Nombre</li>
-          <li class="list-group-item">Correo</li>
-        </ul>
-        {list}
-      </div>
+
+
+
+
+
+
 
     </main>
   );
