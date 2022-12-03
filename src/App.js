@@ -21,7 +21,7 @@ function App() {
   ///////////////////////AGREGA COLABORADORES/////////////////////////////////
   //Función al enviar el formulario
   const enviarFormulario = (e) => {
-    console.log("Enviar form")
+    // console.log("Enviar form")
     e.preventDefault()
     setColaboradorNombre(colaboradorNombre)
     setColaboradorCorreo(colaboradorCorreo)
@@ -40,14 +40,14 @@ function App() {
   }
   //Función al escribir sobre el input del formulario
   const capturaNombre = (e) => {
-    console.log("Captura Nombre")
-    console.log(e.target.value)
+    // console.log("Captura Nombre")
+    // console.log(e.target.value)
     setColaboradorNombre(e.target.value)
   }
 
   const capturaCorreo = (e) => {
-    console.log("Captura Correo")
-    console.log(e.target.value)
+    // console.log("Captura Correo")
+    // console.log(e.target.value)
     setColaboradorCorreo(e.target.value)
   }
   ///////////////////////FIN AGREGA COLABORADORES/////////////////////////////////
@@ -57,7 +57,7 @@ function App() {
   ///////////////////////BUSCAR COLABORADORES POR NOMBRE/////////////////////////////////
   const enviarBusqueda = (e) => {
     e.preventDefault()
-    console.log(`Iniciar busqueda por nombre: ${busquedaPorNombre}`)
+    // console.log(`Iniciar busqueda por nombre: ${busquedaPorNombre}`)
 
     const result = listaColaboradores.filter(user => user.nombre === busquedaPorNombre)
     if (result.length > 0) {
@@ -70,7 +70,7 @@ function App() {
       )
     }
     else {
-      console.log("No encontrado")
+      // console.log("No encontrado")
       setResultadoBusqueda(
         {
           id: '',
@@ -134,6 +134,7 @@ function App() {
                 <button type="submit" className="btn btn-primary">Buscar colaborador</button>
               </div>
             </form>
+            {resultadoBusqueda.id > 0 ?
             <div>
               <p className="fs-3">Resultado búsqueda</p>
               <ul className="list-group list-group-horizontal">
@@ -147,6 +148,7 @@ function App() {
                 <li className="list-group-item col" > {resultadoBusqueda.correo}</li>
               </ul>
             </div>
+            : ''}
           </div>
           <div>
             <p className="fs-3 pt-3">Listado de colaboradores     </p>
