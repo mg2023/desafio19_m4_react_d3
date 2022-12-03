@@ -86,24 +86,24 @@ function App() {
 
   const capturaBusqueda = (e) => {
     setBusquedaPorNombre(e.target.value)
-    console.log(`setBusquedaPorNombre: ${e.target.value}`)
+    // console.log(`setBusquedaPorNombre: ${busquedaPorNombre}`)
   }
 
   ///////////////////////FIN BUSCAR COLABORADORES POR NOMBRE/////////////////////////////////
 
   return (
     <main className="container">
-      <div class="row">
-        <div class="col">
+      <div className="row">
+        <div className="col">
         </div>
-        <div class="col-6 p-3 mb-2 bg-info text-dark">
+        <div className="col-6 p-3 mb-2 bg-info text-dark">
           <header>
-            <p class="fs-1">Registro colaboradores</p>
+            <p className="fs-1">Registro colaboradores</p>
           </header>
           <form onSubmit={enviarFormulario}>
-            <div class="mb-3">
-              <label for="exampleInputName" class="form-label">Nombre del colaborador</label>
-              <input type="text" class="form-control" id="exampleInputName"
+            <div className="mb-3">
+              <label className="form-label">Nombre del colaborador</label>
+              <input type="text" className="form-control" id="exampleInputName"
                 placeholder="Ingresa el nombre del colaborador"
                 name="ingrese-nombre-colaborador"
                 onChange={capturaNombre}
@@ -111,74 +111,66 @@ function App() {
               ></input>
             </div>
             <div className="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Correo del colaborador</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+              <label className="form-label">Correo del colaborador</label>
+              <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                 placeholder="Ingresa el correo del colaborador"
                 name="ingrese-correo-colaborador"
                 onChange={capturaCorreo}
                 value={colaboradorCorreo}
               ></input>
             </div>
-            <button type="submit" class="btn btn-primary">Agregar colaborador</button>
+            <button type="submit" className="btn btn-primary">Agregar colaborador</button>
           </form>
           <div>
             <form onSubmit={enviarBusqueda}>
-              <div class="input-group mb-3 mt-3">
+              <div className="input-group mb-3 mt-3">
                 {/* <label for="exampleInputName" class="form-label"></label> */}
-                <input type="search" class="form-control" id="exampleInputName"
+                <input type="search" className="form-control" id="exampleInputName"
                   placeholder="Busca un colaborador"
                   name="busqueda-por-nombre"
                   onChange={capturaBusqueda}
                   value={busquedaPorNombre}
                 ></input>
-                <button type="submit" class="btn btn-primary">Buscar colaborador</button>
+                <button type="submit" className="btn btn-primary">Buscar colaborador</button>
               </div>
             </form>
             <div>
-              <p class="fs-3">Resultado búsqueda</p>
-              <ul class="list-group list-group-horizontal">
-                <li class="list-group-item col-1">ID</li>
-                <li class="list-group-item col-4">Nombre</li>
-                <li class="list-group-item col">Correo</li>
+              <p className="fs-3">Resultado búsqueda</p>
+              <ul className="list-group list-group-horizontal">
+                <li className="list-group-item col-1">ID</li>
+                <li className="list-group-item col-4">Nombre</li>
+                <li className="list-group-item col">Correo</li>
               </ul>
-              <ul class="list-group list-group-horizontal-lg">
-                <li class="list-group-item col-1" > {resultadoBusqueda.id} </li>
-                <li class="list-group-item col-4" > {resultadoBusqueda.nombre} </li>
-                <li class="list-group-item col" > {resultadoBusqueda.correo}</li>
+              <ul className="list-group list-group-horizontal-lg" key={resultadoBusqueda.id} >
+                <li className="list-group-item col-1" > {resultadoBusqueda.id} </li>
+                <li className="list-group-item col-4" > {resultadoBusqueda.nombre} </li>
+                <li className="list-group-item col" > {resultadoBusqueda.correo}</li>
               </ul>
             </div>
           </div>
           <div>
-            <p class="fs-3">Listado de colaboradores     </p>
+            <p className="fs-3">Listado de colaboradores     </p>
           </div>
           <div>
-            <ul class="list-group list-group-horizontal">
-              <li class="list-group-item col-1">ID</li>
-              <li class="list-group-item col-4">Nombre</li>
-              <li class="list-group-item col">Correo</li>
+            <ul className="list-group list-group-horizontal">
+              <li className="list-group-item col-1">ID</li>
+              <li className="list-group-item col-4">Nombre</li>
+              <li className="list-group-item col">Correo</li>
             </ul>
             {listaColaboradores.map((colaborador) =>
-              <ul class="list-group list-group-horizontal-lg">
-                <li class="list-group-item col-1" key={colaborador.id} > {colaborador.id} </li>
-                <li class="list-group-item col-4" key={colaborador.id} > {colaborador.nombre} </li>
-                <li class="list-group-item col" key={colaborador.id} > {colaborador.correo}</li>
+              <ul className="list-group list-group-horizontal-lg" key={colaborador.id} >
+                <li className="list-group-item col-1" > {colaborador.id} </li>
+                <li className="list-group-item col-4" > {colaborador.nombre} </li>
+                <li className="list-group-item col"  > {colaborador.correo}</li>
               </ul>)}
           </div>
           <footer>
-            <p class="fs-5 text-center pt-3">Desafio colaboradores 2022</p>
+            <p className="fs-5 text-center pt-3">Desafio colaboradores 2022</p>
           </footer>
         </div>
-
-        <div class="col">
+        <div className="col">
         </div>
       </div>
-
-
-
-
-
-
-
     </main>
   );
 }
